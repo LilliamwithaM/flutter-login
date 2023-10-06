@@ -9,8 +9,8 @@ class AuthValidator {
     }
   }
 
-  static String? isEmailValid(String? text) {
-    if (text != null) {
+    static String? isEmailValid(String? text) {
+    if (text != null && text.contains("@") && text.contains(".")) {
       return null;
     } else {
       return "Email in not valid";

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ui_one/features/auth/presentation/pages/admin_page.dart';
 import 'package:ui_one/features/auth/presentation/pages/main_home.dart';
-
-import 'package:ui_one/features/auth/presentation/pages/app_widget.dart';
+import 'package:ui_one/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:ui_one/features/auth/presentation/validator/auth_validator.dart';
-import 'package:ui_one/service._locator.dart';
-
-import '../components/buttons.dart';
+import '../../../../service/auth_service.dart';
 
 class SignInPage extends StatefulWidget {
   static const String id = "sign_in_page";
 
-  const SignInPage({super.key});
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -19,119 +16,177 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final _signInGlobalKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController usernameController =
+      TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool passwordSee = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(
-              width: 100,
-              height: 10,
-            ),
-            const Center(
-              child: Text(
-                "Bienvenido deseas continuar con el inicio de sesion!",
-                textAlign: TextAlign.center,
+      backgroundColor: Colors.blueGrey, // Cambia el color de fondo aquí
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 100,
+              ),
+              Text(
+                "Iniciar Sesión",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-            ),
-            const SizedBox(
-              width: 100,
-              height: 10,
-            ),
-            Form(
-              key: _signInGlobalKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: emailController,
-                    validator: AuthValidator.isEmailValid,
-                    decoration:
-                        const InputDecoration(hintText: "email address"),
-                  ),
-                  const SizedBox(height: 30),
-                  TextFormField(
-                    controller: passwordController,
-                    obscureText: passwordSee,
-                    validator: AuthValidator.isPasswordValid,
-                    decoration: InputDecoration(
-                      hintText: "password",
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          passwordSee = !passwordSee;
-                          setState(() {});
-                        },
-                        child: Icon(
-                          passwordSee
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "¡Bienvenido de nuevo! ¿Qué te trae por aquí?",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Form(
+                key: _signInGlobalKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: usernameController,
+                      validator: AuthValidator.isNameValid,
+                      decoration: InputDecoration(
+                        hintText: "Nombre de usuario",
+                        hintStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: passwordController,
+                      obscureText: passwordSee,
+                      validator: AuthValidator.isPasswordValid,
+                      decoration: InputDecoration(
+                        hintText: "Contraseña",
+                        hintStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              passwordSee = !passwordSee;
+                            });
+                          },
+                          child: Icon(
+                            passwordSee
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: signIn,
+                child: Text(
+                  "Iniciar Sesión",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "¿No tienes una cuenta?",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, SignUpPage.id);
+                    },
+                    child: Text(
+                      "Registrarse",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.orange,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 100),
-            Column(
-              children: [
-                MyButtonTwo(text: "Log in", onPressed: signIn),
-                const SizedBox(height: 30),
-                const Text(
-                  "Forgot Password",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    color: Color(0xFF265AE8),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void signIn() {
+  void signIn() async {
     if (_signInGlobalKey.currentState!.validate()) {
-      final message = authController.login(
-        emailController.text.trim(),
+      final authService = AuthService();
+
+      final token = await authService.login(
+        usernameController.text.trim(),
         passwordController.text.trim(),
       );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message["message"] as String),
-          margin:
-              EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .9),
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 5),
-          shape: const StadiumBorder(),
-          dismissDirection: DismissDirection.horizontal,
-          showCloseIcon: true,
-        ),
-      );
-      if (message["next"] == "next") {
-        AppWidget.isLogin = true;
-        AppWidget.loggedUser["email"] = emailController.text.trim();
-        AppWidget.loggedUser["password"] = passwordController.text.trim();
+
+      if (token != null) {
         Navigator.pushNamed(context, MyApp.id);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Inicio de sesión fallido"),
+          ),
+        );
       }
     }
   }
 
   @override
   void dispose() {
-    emailController.dispose();
+    usernameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
