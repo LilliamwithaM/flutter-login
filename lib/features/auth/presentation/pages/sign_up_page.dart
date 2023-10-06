@@ -8,7 +8,7 @@ import 'package:ui_one/features/auth/presentation/pages/admin_page.dart';
 class SignUpPage extends StatefulWidget {
   static const String id = "sign_up_page";
 
-  const SignUpPage({super.key});
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -25,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue, // Cambiar el color de fondo a azul
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -36,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 const SizedBox(height: 50),
 
-                // Back Icon Button
+                // Botón de retroceso
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
@@ -44,14 +45,17 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: const Icon(
                     Icons.chevron_left,
                     size: 40,
+                    color: Colors.black, // Icono de flecha en negro
                   ),
                 ),
                 const SizedBox(height: 30),
+
+                // Título
                 Row(
                   children: const [
                     SizedBox(width: 10),
                     Text(
-                      "Enter your details",
+                      "Ingresa tus datos para hacer nuevo miembro de bichopolis",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -60,35 +64,41 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
                 const SizedBox(height: 55),
+
                 Column(
                   children: [
-                    // Name Input -------------------------------------
+                    // Campo de Nombre
                     TextFormField(
                       controller: nameController,
                       validator: AuthValidator.isNameValid,
                       decoration: const InputDecoration(
-                        hintText: "user name",
+                        labelText: "Nombre de usuario",
+                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
 
-                    // Email Input -------------------------------------
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
+
+                    // Campo de Correo Electrónico
                     TextFormField(
                       controller: emailController,
                       validator: AuthValidator.isEmailValid,
                       decoration: const InputDecoration(
-                        hintText: "email addresss",
+                        labelText: "Dirección de correo electrónico",
+                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
 
-                    // Password Input -------------------------------------
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
+
+                    // Campo de Contraseña
                     TextFormField(
                       controller: passwordController,
                       obscureText: passwordSee,
                       validator: AuthValidator.isPasswordValid,
                       decoration: InputDecoration(
-                        hintText: "password",
+                        labelText: "Contraseña",
+                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
                         suffixIcon: GestureDetector(
                           onTap: () {
                             passwordSee = !passwordSee;
@@ -98,26 +108,32 @@ class _SignUpPageState extends State<SignUpPage> {
                             passwordSee
                                 ? Icons.visibility_off_outlined
                                 : Icons.visibility_outlined,
+                            color: Colors.black, // Icono de visibilidad en negro
                           ),
                         ),
                       ),
                     ),
 
-                    // Retry Password Input -------------------------------------
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
+
+                    // Campo de Confirmar Contraseña
                     TextFormField(
                       controller: passwordRetryController,
                       obscureText: passwordSee,
                       validator: AuthValidator.isPasswordValid,
                       decoration: const InputDecoration(
-                        hintText: "password",
+                        labelText: "Confirmar contraseña",
+                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
-                    const SizedBox(height: 120),
-                    // Sign Up for Button ----------------------------------
+
+                    const SizedBox(height: 40),
+
+                    // Botón de Registro
                     MyButtonTwo(
-                      text: "Continue",
+                      text: "Continuar",
                       onPressed: signUpButton,
+                      color: Colors.yellow, // Color de botón amarillo
                     ),
                   ],
                 ),
@@ -132,7 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> signUpButton() async {
     if (_signUpGlobalKey.currentState!.validate()) {
       try {
-        final Map<String, String> message = await authController.registration( // Añade await aquí
+        final Map<String, String> message = await authController.registration(
           nameController.text.trim(),
           emailController.text.trim(),
           passwordController.text.trim(),
@@ -148,13 +164,12 @@ class _SignUpPageState extends State<SignUpPage> {
             showCloseIcon: true,
           ),
         );
-         } catch (e) {
+      } catch (e) {
         print("Error: ${e.toString()}");
       }
     }
   }
 
-  // textController exits when finished
   @override
   void dispose() {
     nameController.dispose();

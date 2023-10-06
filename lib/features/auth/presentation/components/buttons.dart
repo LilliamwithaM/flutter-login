@@ -57,7 +57,7 @@ class MyButtonTwo extends StatelessWidget {
   const MyButtonTwo({
     super.key,
     required this.text,
-    this.onPressed,
+    this.onPressed, required MaterialColor color,
   });
 
   @override

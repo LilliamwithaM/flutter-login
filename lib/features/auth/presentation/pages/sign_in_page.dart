@@ -46,10 +46,10 @@ class _SignInPageState extends State<SignInPage> {
                 height: 20,
               ),
               Text(
-                "¡Bienvenido de nuevo! ¿Qué te trae por aquí?",
+                "Quieres volver entrar a bichopolis nuevamente?",
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey,
+                  color: const Color.fromARGB(255, 194, 74, 74),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -122,7 +122,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
+                  primary: const Color.fromARGB(255, 21, 255, 0),
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -132,30 +132,7 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "¿No tienes una cuenta?",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, SignUpPage.id);
-                    },
-                    child: Text(
-                      "Registrarse",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.orange,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            
             ],
           ),
         ),

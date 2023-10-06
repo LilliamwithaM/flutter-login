@@ -26,36 +26,31 @@ class _IntroPageState extends State<IntroPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "¡Bienvenido Usuario Nuevo!",
+              "¡Bienvenido Nuevo Usuario  De Bichopolis!",
               style: TextStyle(
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF265AE8),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              "¿Ya tienes una cuenta? ¡Deseas continuar!",
-              style: TextStyle(
-                fontSize: 18,
-                color: Color(0xFF383838),
-              ),
-              textAlign: TextAlign.center,
-            ),
             SizedBox(height: 30),
-            Center( // Centra el botón
-              child: MyButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, SignUpPage.id);
-                },
-                text: "¡Deseas registrarte en la página!",
-                color: Color(0xFF265AE8),
-                textColor: Colors.white,
+            Center(
+              // Centra el botón
+              child: SizedBox(
+                width: 500, // Ancho deseado
+                child: MyButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, SignUpPage.id);
+                  },
+                  text: "Registrarse",
+                  color: Color.fromARGB(255, 0, 49, 185),
+                  textColor: Colors.white,
+                ),
               ),
             ),
             SizedBox(height: 20),
             Text(
-              "Esperamos que disfrutes de nuestra página y aceptes las condiciones. ¡Saludos crack!",
+              "¡Te manda saludos el bicho siuuuu!",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF404653),
@@ -66,7 +61,7 @@ class _IntroPageState extends State<IntroPage> {
             ),
             SizedBox(height: 30),
             Text(
-              "¿Ya tienes alguna cuenta? ¿Eres como el bicho siuu?",
+              "¿Ya tienes una cuenta en bichopolis?",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF383838),
@@ -75,19 +70,19 @@ class _IntroPageState extends State<IntroPage> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(height: 15),
-            RichText(
-              text: TextSpan(
-                text: "Inicia sesión siuuu",
-                style: TextStyle(
-                  color: Color(0xFF265AE8),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
+            SizedBox(height: 30),
+            Center(
+              // Centra el botón
+              child: SizedBox(
+                width: 500, // Ancho deseado
+                child: MyButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, SignInPage.id);
                   },
+                  text: "inicia sesion siuuu",
+                  color: Color.fromARGB(255, 0, 49, 185),
+                  textColor: Colors.white,
+                ),
               ),
             ),
           ],
