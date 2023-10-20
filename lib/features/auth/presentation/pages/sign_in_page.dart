@@ -16,15 +16,15 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final _signInGlobalKey = GlobalKey<FormState>();
-  TextEditingController usernameController =
-      TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool passwordSee = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey, // Cambia el color de fondo aquí
+      backgroundColor:
+          Color.fromARGB(255, 192, 66, 38), // Cambia el color de fondo aquí
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -49,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                 "Quieres volver entrar a bichopolis nuevamente?",
                 style: TextStyle(
                   fontSize: 14,
-                  color: const Color.fromARGB(255, 194, 74, 74),
+                  color: Color.fromARGB(255, 114, 194, 74),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -132,7 +132,6 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(
                 height: 20,
               ),
-            
             ],
           ),
         ),

@@ -25,7 +25,8 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue, // Cambiar el color de fondo a azul
+      backgroundColor: const Color.fromARGB(
+          255, 243, 33, 156), // Cambiar el color de fondo a azul
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
@@ -73,7 +74,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: AuthValidator.isNameValid,
                       decoration: const InputDecoration(
                         labelText: "Nombre de usuario",
-                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
+                        labelStyle:
+                            TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
 
@@ -85,7 +87,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: AuthValidator.isEmailValid,
                       decoration: const InputDecoration(
                         labelText: "Dirección de correo electrónico",
-                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
+                        labelStyle:
+                            TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
 
@@ -98,7 +101,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: AuthValidator.isPasswordValid,
                       decoration: InputDecoration(
                         labelText: "Contraseña",
-                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
+                        labelStyle:
+                            TextStyle(color: Colors.black), // Etiqueta en negro
                         suffixIcon: GestureDetector(
                           onTap: () {
                             passwordSee = !passwordSee;
@@ -108,7 +112,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             passwordSee
                                 ? Icons.visibility_off_outlined
                                 : Icons.visibility_outlined,
-                            color: Colors.black, // Icono de visibilidad en negro
+                            color:
+                                Colors.black, // Icono de visibilidad en negro
                           ),
                         ),
                       ),
@@ -123,7 +128,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: AuthValidator.isPasswordValid,
                       decoration: const InputDecoration(
                         labelText: "Confirmar contraseña",
-                        labelStyle: TextStyle(color: Colors.black), // Etiqueta en negro
+                        labelStyle:
+                            TextStyle(color: Colors.black), // Etiqueta en negro
                       ),
                     ),
 
@@ -156,7 +162,8 @@ class _SignUpPageState extends State<SignUpPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(message["message"]!),
-            margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .9),
+            margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * .9),
             behavior: SnackBarBehavior.floating,
             duration: const Duration(seconds: 5),
             shape: const StadiumBorder(),
